@@ -1,0 +1,27 @@
+`timescale 1ns/1ps
+`include "pcie_pkg.sv"
+
+module tb_top;
+  import uvm_pkg::*; 
+  import pcie_pkg::*;
+
+  // 时钟/复位
+  logic clk=0, rst_n=0; always #5 clk = ~clk; // 100MHz
+  initial begin #40 rst_n=1; end
+
+  // 接口
+  pcie_if #(32,32,10) vif(.clk(clk), .rst_n(rst_n));// 创建一个 pcie_if 接口实例，参数化为 32 位地址、32 位数据和 10 位长度
+
+  // DUT
+  dummy_dut #(32,32,10) dut(.ifc(vif));// 创建一个 dummy_dut 实例，参数化为 32 位地址、32 位数据和 10 位长度，并将接口 vif 传递给它
+
+  // 把 virtual interface 放进 config_db
+  initial begin
+    uvm_config_db#(virtual pcie_if)::set(null, "*", "vif", vif);// 将虚拟接口 vif 存入 UVM 配置数据库，供测试环境使用
+  end
+
+  // 运行 UVM
+  initial begin
+    run_test("pcie_base_test");// 启动 UVM 测试，运行名为 "pcie_base_test" 的测试
+  end
+endmodule
