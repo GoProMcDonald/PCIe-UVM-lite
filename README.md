@@ -274,12 +274,14 @@ Without changing the default EDA Playground compile options, we implemented **li
 #### **2. Live Coverage Reporting**
 - Optional per-sample coverage printout in `write_req()` (controlled by `print_on_sample` flag).
 - Automatic final coverage summary in `final_phase()`:
+<img width="1266" height="690" alt="image" src="https://github.com/user-attachments/assets/351ad141-62f7-4217-9ceb-0b76fea1a1c8" />
+<img width="1844" height="523" alt="image" src="https://github.com/user-attachments/assets/6ab9ff55-6462-4aba-bac8-5b00b2ea14a0" />
+
 
 ```systemverilog
 UVM_INFO [COV] REQ_CG=22.5% (type=50.0%, len=16.7%, addr=25.0%, 
                              x_type_len=8.3%, x_type_addr=12.5%) | CPL_CG=0.4%
 
 
-<img width="1266" height="690" alt="image" src="https://github.com/user-attachments/assets/351ad141-62f7-4217-9ceb-0b76fea1a1c8" />
-<img width="1844" height="523" alt="image" src="https://github.com/user-attachments/assets/6ab9ff55-6462-4aba-bac8-5b00b2ea14a0" />
+
 
