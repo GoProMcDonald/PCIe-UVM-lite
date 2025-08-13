@@ -255,3 +255,4 @@ package pcie_pkg; import uvm_pkg::*;
 ```
 # PCIe-UVM-lite
 <img width="1283" height="598" alt="image" src="https://github.com/user-attachments/assets/792d02bc-e52f-448f-aad5-a0d7d8254ea8" />
+<img width="1845" height="501" alt="image" src="https://github.com/user-attachments/assets/5f158711-064b-40fd-a9a0-7738751d1e55" />
