@@ -280,7 +280,6 @@ Copy
 Edit
 UVM_INFO [COV] REQ_CG=22.5% (type=50.0%, len=16.7%, addr=25.0%, 
                              x_type_len=8.3%, x_type_addr=12.5%) | CPL_CG=0.4%
-Implemented using get_inst_coverage() / get_coverage() — no dependency on -cm group or URG.
 
 Collector Integration
 
