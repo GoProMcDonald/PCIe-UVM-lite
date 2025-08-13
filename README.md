@@ -257,48 +257,28 @@ package pcie_pkg; import uvm_pkg::*;
 <img width="1283" height="598" alt="image" src="https://github.com/user-attachments/assets/792d02bc-e52f-448f-aad5-a0d7d8254ea8" />
 <img width="1845" height="501" alt="image" src="https://github.com/user-attachments/assets/5f158711-064b-40fd-a9a0-7738751d1e55" />
 
-Project Update – 2025-08-13
-Today’s focus was on integrating and verifying Functional Coverage for the PCIe UVM testbench.
-Without changing the default EDA Playground compile options, we implemented live coverage percentage reporting directly in the simulation log.
-New Additions
-Coverage Component (pcie_coverage)
+## **Project Update – 2025-08-13**
 
-Added a dedicated coverage collector class inside pcie_pkg.sv.
+Today’s focus was on **integrating and verifying Functional Coverage** for the PCIe UVM testbench.  
+Without changing the default EDA Playground compile options, we implemented **live coverage percentage reporting** directly in the simulation log.
 
-Samples TLP Type, TLP Length (in DW), Address Range, and cross coverage (x_type_len, x_type_addr).
+---
 
-Added coverage for Completion (CPL) tag distribution.
+### **New Additions**
 
-Live Coverage Reporting
+#### **1. Coverage Component (`pcie_coverage`)**
+- Added a dedicated coverage collector class inside `pcie_pkg.sv`.
+- Samples **TLP Type**, **TLP Length (in DW)**, **Address Range**, and cross coverage (`x_type_len`, `x_type_addr`).
+- Added coverage for **Completion (CPL) tag distribution**.
 
-Optional per-sample coverage printout in write_req() (controlled by print_on_sample flag).
+#### **2. Live Coverage Reporting**
+- Optional per-sample coverage printout in `write_req()` (controlled by `print_on_sample` flag).
+- Automatic final coverage summary in `final_phase()`:
 
-Automatic final coverage summary in final_phase():
-
-go
-Copy
-Edit
+```systemverilog
 UVM_INFO [COV] REQ_CG=22.5% (type=50.0%, len=16.7%, addr=25.0%, 
                              x_type_len=8.3%, x_type_addr=12.5%) | CPL_CG=0.4%
 
-Collector Integration
-
-Instantiated pcie_coverage in pcie_env and connected it to agent.mon.ap_req / agent.mon.ap_cpl.
-
-Allows scoreboard and coverage collection to subscribe to monitor transactions in parallel.
-
-Field and Data Path Completion
-
-Added length_dw field in pcie_seq_item with uvm_field_int registration to ensure coverage group sampling.
-
-Added default value handling for length_dw in the monitor (= 1) to avoid hitting illegal_bins.
-
-Verification Results
-Simulation on EDA Playground successfully outputs coverage percentages in the log.
-
-Current stimulus covers only a subset of bins: REQ_CG = 22.5%, CPL_CG = 0.4%.
-
-Next step: expand the sequence stimulus set to significantly increase coverage.
 
 <img width="1266" height="690" alt="image" src="https://github.com/user-attachments/assets/351ad141-62f7-4217-9ceb-0b76fea1a1c8" />
 <img width="1844" height="523" alt="image" src="https://github.com/user-attachments/assets/6ab9ff55-6462-4aba-bac8-5b00b2ea14a0" />
